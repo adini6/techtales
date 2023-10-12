@@ -31,13 +31,11 @@ User.init(
         }
     },
     {
-        //ensuress password is hashed before saving it 
         hooks: {
             beforeCreate: async (newUserData) => {
                 newUserData.password = await bcrypt.hash(newUserData.password, 10);
                 return newUserData;
             },
-            //password is hased if it's updated
             beforeUpdate: async (updatedUserData) => {
                 if(updatedUserData.password){
                     updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);

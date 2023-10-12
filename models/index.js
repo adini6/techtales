@@ -1,12 +1,10 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/connection');
 
-//import models
 const User = require('./user');
 const BlogPost = require('./blogPost');
 const Comment = require('./comment');
 
-//// Set up associations
 User.hasMany(BlogPost,{
   foreignKey: 'user_id',
   onDelete: 'CASCADE'
@@ -34,5 +32,4 @@ User.hasMany(Comment, {
   onDelete: 'CASCADE'
 });
 
-//export models and sequelize connection
 module.exports = {User, BlogPost, Comment, sequelize};
